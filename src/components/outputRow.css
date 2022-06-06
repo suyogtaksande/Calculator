@@ -1,0 +1,23 @@
+@font-face {
+    font-family : 'DS-DIGI';
+    src:url(../assets/font/DS-DIGI.TTF)
+}
+
+
+.screen {
+    font-family: 'DS-DIGI' , sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    font-size: 3.5rem;
+    height: 30px;
+    border: none;
+    background-color: #25a8e8;
+    color: white;
+    text-align: right;
+    padding-right: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
