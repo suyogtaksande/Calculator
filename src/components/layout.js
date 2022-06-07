@@ -5,6 +5,8 @@ import Output from './output';
 const Layout = (props) => {
     let [input, setInput] = useState('0')
     let [result, setResult] = useState('')
+    let addClass = 'button'
+    let numberOperators = ['C','DEL','%','/','7','8','9','*','4','5','6','-','1','2','3','+','0','.','=']
     const hancleClick =(event) => {
         const value = event.target.value;
         if (value === '=') {
@@ -40,6 +42,20 @@ const Layout = (props) => {
             setInput((input +=value))
         }
     }
+    const calKeys = []
+    for (const [i, element] of numberOperators.entries()) {
+        if (element === 'C' || element === 'DEL') {
+            addClass = "button clear"
+        }
+        else if (element === '%' || element === '/' || element === '*' || element === '-' || element === '+' || element === '.' || element === '=') {
+            addClass = "button operator"
+        }
+        else if (element === '=') {
+            addClass = "button equal-sign"
+        }
+        calKeys.push(<input className={addClass} value={element} onClick={hancleClick}  type='button'></input>)
+        addClass = 'button'
+    }
     return(
         <div className='frame'>
             <div className='calculator'>
@@ -47,29 +63,7 @@ const Layout = (props) => {
                 <Output user={input} answer={result} />
                 <img />
                 <div className='keys'>
-                    <input type='button' value={'C'} className='button clear' onClick={hancleClick}></input>
-                    <input type='button' value={'DEL'} className='button clear' onClick={hancleClick}></input>
-                    <input type='button' value={'%'} className='button operator' onClick={hancleClick}></input>
-                    <input type='button' value={'/'} className='button operator' onClick={hancleClick}></input>
-
-                    <input type='button' value={'7'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'8'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'9'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'*'} className='button operator' onClick={hancleClick}></input>
-
-                    <input type='button' value={'4'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'5'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'6'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'-'} className='button operator' onClick={hancleClick}></input>
-
-                    <input type='button' value={'1'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'2'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'3'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'+'} className='button operator' onClick={hancleClick}></input>
-
-                    <input type='button' value={'0'} className='button' onClick={hancleClick}></input>
-                    <input type='button' value={'.'} className='button operator' onClick={hancleClick}></input>
-                    <input type='button' value={'='} className='button equal-sign' onClick={hancleClick}></input>
+                    {calKeys}
                 </div>
             </div>
         </div>
